@@ -350,15 +350,15 @@ test("history, constancy and rewards explain the person's own records", async ({
   await expect(page.getByText("¿Cómo se calculan?")).toBeVisible();
 });
 
-test("a record needs photo and amount, and can be in dollars", async ({
+test("a record needs an amount, the photo is optional, and it can be in dollars", async ({
   page,
 }) => {
   await page.goto("/registro");
   await page.getByLabel(/qué compraste/i).fill("Libro");
   await page.getByRole("button", { name: "Guardar decisión" }).click();
   await expect(page).toHaveURL(/\/registro$/);
-  await expect(page.getByText("Agrega una foto de tu compra")).toBeVisible();
   await expect(page.locator("#amount-error")).toContainText("cuánto gastaste");
+  await expect(page.getByText("Recomendada, no obligatoria")).toBeVisible();
 
   await page
     .getByLabel("Agregar foto de tu decisión")
@@ -444,4 +444,30 @@ test("the same purchase is kept in the history but rewarded only once", async ({
   await expect(
     page.locator(".history-item").filter({ hasText: "Sin recompensa" }),
   ).toContainText("Esta foto ya se usó");
+});
+
+test("a purchase without a ticket can be registered and rewarded", async ({
+  page,
+}) => {
+  await page.goto("/registro");
+  await page.getByLabel(/qué compraste/i).fill("Tianguis");
+  await page.getByLabel("Monto en pesos mexicanos").fill("80");
+  await page.getByRole("button", { name: "Guardar decisión" }).click();
+  await expect(page).toHaveURL(/\/recompensa$/);
+  await claimReward(page);
+});
+
+test("the account shows transfer, withdraw and use, and explains what is pending", async ({
+  page,
+}) => {
+  await page.goto("/cuenta");
+  const actions = page.locator(".asset-actions");
+  await expect(
+    actions.getByRole("button", { name: /Transferir/ }),
+  ).toContainText("Disponible");
+  await actions.getByRole("button", { name: /Retirar/ }).click();
+  await expect(actions).toContainText("Aún no está disponible");
+  await expect(actions).toContainText("pesos");
+  await actions.getByRole("button", { name: /Usar/ }).click();
+  await expect(actions).toContainText("aliados");
 });

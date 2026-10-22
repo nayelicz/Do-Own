@@ -4744,3 +4744,68 @@ button:disabled {
     grid-template-columns: 1fr;
   }
 }
+.asset-actions {
+  display: grid;
+  gap: 12px;
+}
+.asset-actions h2 {
+  font-size: 1.05rem;
+  margin: 0;
+}
+.asset-actions-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.asset-action {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 12px 6px;
+  border-radius: 18px;
+  border: 1.5px solid #e7e1f4;
+  background: #fff;
+  font: inherit;
+  font-weight: 700;
+  color: #2b2350;
+  cursor: pointer;
+  min-width: 0;
+}
+.asset-action[aria-expanded="true"] {
+  border-color: #7c3aed;
+  background: #f6f3ff;
+}
+.asset-action.is-soon span {
+  color: #5e5878;
+}
+.asset-action .badge {
+  font-size: 0.64rem;
+  padding: 3px 7px;
+  white-space: normal;
+  text-align: center;
+  max-width: 100%;
+}
+.asset-action-detail {
+  display: grid;
+  gap: 6px;
+  background: #f6f3ff;
+  border-radius: 16px;
+  padding: 12px 14px;
+  font-size: 0.9rem;
+}
+.asset-action-detail p {
+  margin: 0;
+}
+.asset-action-detail .field-hint {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.asset-action-detail ul {
+  list-style: disc;
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 4px;
+  color: #4b4565;
+}

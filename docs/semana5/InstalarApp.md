@@ -31,7 +31,7 @@ Enlace: **https://do-own-six.vercel.app**
 
 - Escribe tu nombre (obligatorio) y toca **Comenzar mi recorrido**. El correo es opcional. La app te lleva directo a registrar tu primer gasto.
 - Tu cuenta digital se crea sola en tu teléfono. No hay contraseña ni datos bancarios.
-- Para registrar una decisión necesitas la foto de tu compra o ticket, qué compraste y el monto (en pesos o dólares).
+- Para registrar una decisión anota qué compraste y el monto (en pesos o dólares). La foto del ticket es recomendada, no obligatoria: con al menos una foto en la semana participas por el bono semanal.
 - Los DOWN son recompensas de prueba y no tienen valor en dinero. Tu saldo siempre se ve arriba, junto a la campana.
 
 ## Si algo no sale

@@ -1,5 +1,6 @@
 "use client";
 
+import { AssetActions } from "./asset-actions";
 import { useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 import {
@@ -146,6 +147,7 @@ function DemoAccountScreen() {
             </p>
           </Card>
         </div>
+        <AssetActions unit="créditos" />
         <Card className="transfer-card">
           <IconTile icon={Send} />
           <h2>Envía una recompensa</h2>

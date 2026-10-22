@@ -1,5 +1,6 @@
 "use client";
 
+import { AssetActions } from "./asset-actions";
 import { useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 import {
@@ -257,6 +258,7 @@ export function WalletAccount() {
           <InstallCard />
         </div>
 
+        <AssetActions unit="DOWN" />
         <Card className="transfer-card">
           <IconTile icon={Send} />
           <h2>Envía una recompensa</h2>

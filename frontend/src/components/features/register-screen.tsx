@@ -140,7 +140,6 @@ export function RegisterScreen() {
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const itemMissing = !item.trim();
-    const photoMissing = !photo;
     const normalized = amount.trim().replace(",", ".");
     const amountBad =
       !/^\d+(\.\d{1,2})?$/.test(normalized) ||
@@ -154,17 +153,11 @@ export function RegisterScreen() {
         ? "Escribe cuánto gastaste: un monto mayor a 0, con hasta 2 decimales."
         : "",
     );
-    setPhotoError(
-      photoMissing
-        ? "Agrega una foto de tu compra o ticket: es la evidencia de tu registro."
-        : "",
-    );
-    if (photoMissing || itemMissing || amountBad) {
-      if (photoMissing)
-        document
-          .querySelector(".photo-capture")
-          ?.scrollIntoView({ behavior: "smooth", block: "center" });
-      else document.getElementById(itemMissing ? "item" : "amount")?.focus();
+    // F02: the photo is recommended, not required. Without it the record
+    // still counts and earns its reward; the weekly bonus asks for at least
+    // one record with a photo during the week.
+    if (itemMissing || amountBad) {
+      document.getElementById(itemMissing ? "item" : "amount")?.focus();
       return;
     }
     const input = {
@@ -221,7 +214,8 @@ export function RegisterScreen() {
               <div>
                 <h2>Observa tu decisión</h2>
                 <p>
-                  Toma una foto de tu compra o ticket y anota cuánto gastaste.
+                  Anota qué compraste y cuánto. Si tienes el ticket, tómale una
+                  foto.
                 </p>
               </div>
             </div>
@@ -232,7 +226,6 @@ export function RegisterScreen() {
                 capture="environment"
                 id="photo-input"
                 aria-label="Agregar foto de tu decisión"
-                aria-required="true"
                 aria-invalid={!!photoError}
                 onChange={selectPhoto}
               />
@@ -270,7 +263,7 @@ export function RegisterScreen() {
             <p className="field-hint">
               {photo
                 ? "✓ Evidencia adjuntada correctamente. Se guarda solo en este teléfono."
-                : "Obligatoria: foto de tu compra o ticket (JPG, PNG o WebP, hasta 10 MB). Se guarda solo en este teléfono."}
+                : "Recomendada, no obligatoria: la foto de tu compra o ticket respalda tu registro y cuenta para tu bono semanal. JPG, PNG o WebP, hasta 10 MB. Se guarda solo en este teléfono."}
             </p>
             <p className="field-hint privacy-hint">
               Si tu ticket muestra tu nombre, dirección o números de tarjeta,

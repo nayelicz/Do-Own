@@ -99,8 +99,8 @@ export function WelcomeScreen() {
             <div>
               <IconTile icon={Camera} />
               <p>
-                <strong>Observa</strong>Registra una decisión con la foto de tu
-                compra y su monto.
+                <strong>Observa</strong>Registra qué compraste y cuánto; agrega
+                la foto del ticket si la tienes.
               </p>
             </div>
             <div>
